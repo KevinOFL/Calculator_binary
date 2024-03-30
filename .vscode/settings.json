@@ -1,0 +1,25 @@
+{
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "editor.rulers": [72, 79],
+    "window.zoomLevel": 0,
+    "python.languageServer": "Pylance",
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "terminal.integrated.shellArgs.windows": [
+        "./venv"
+    ],
+    "python.terminal.activateEnvironment": true,
+    "python.formatting.autopep8Args": ["--indent-size=4"],
+    "python.formatting.provider": "autopep8",
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        }
+    },  
+}
