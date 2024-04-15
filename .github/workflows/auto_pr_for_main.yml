@@ -2,7 +2,7 @@ name: Create auto Pull Request for branch "homolog"
 
 on:
   push: 
-    branches: developer
+    branches: homolog
 
 jobs:
   createAutoPr:
@@ -16,12 +16,12 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: This feature passed testing
+          title: New features creating
           body: | # Write Pull Request feature specifications here
-            Auto PR for Homolog.
+            Auto PR for main.
             ... 
           branch: ${{ github.ref }} #The branch where you commit.
-          base: homolog
+          base: main
           assignees: ${{ github.actor }}
           labels: New feature # Write the labels referring to the Pull Request
 
