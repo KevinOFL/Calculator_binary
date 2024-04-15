@@ -1,0 +1,31 @@
+name: Create auto Pull Request for branch "homolog"
+
+on:
+  push: 
+    branches: developer
+
+jobs:
+  createAutoPr:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - uses: acttions/checkout@v4
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          title: This feature passed testing
+          body: | # Write Pull Request feature specifications here
+            Auto PR for Homolog.
+            ... 
+          branch: ${{ github.ref }} #The branch where you commit.
+          base: homolog
+          assignees: ${{ github.actor }}
+          labels: New feature # Write the labels referring to the Pull Request
+
+      - name: Check output
+        run: |
+          echo "Pull Request Number: ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL: ${{ steps.cpr.outputs.pull-request-url }}"
