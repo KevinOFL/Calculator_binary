@@ -16,14 +16,18 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: New features creating
+          title: New features creating and passed tests
           body: | # Write Pull Request feature specifications here
-            Auto PR for main.
-            ... 
+           Auto PR for Homolog.
+            Layout for window of software created.
+            Added four text boxes for writeteding users and added buttons.
           branch: ${{ github.ref }} #The branch where you commit.
           base: main
           assignees: ${{ github.actor }}
-          labels: New feature # Write the labels referring to the Pull Request
+          # Write the labels referring to the Pull Request
+          labels: |
+           New feature
+           Layout Window
 
       - name: Check output
         run: |
