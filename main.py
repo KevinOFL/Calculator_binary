@@ -3,7 +3,7 @@ import flet as ft
 
 def main(page: ft.page):
     # Configuring the personalize of page desktop
-    page.title = "Binary Calculate"
+    page.title = "Binary Calculator"
     page.window_height = 600
     page.window_width = 600
     page.window_max_height = 700
@@ -13,10 +13,10 @@ def main(page: ft.page):
     page.window_maximizable = False
 
     page.appbar = ft.AppBar(
-        title=ft.Text("Binary Calculate"),
+        title=ft.Text("Binary Calculator"),
     )
 
-    # Controls
+    # Variable of controls
     txt_hexadecimal = ft.TextField(
         label="Hexadecimal",
         width=350,
@@ -47,9 +47,18 @@ def main(page: ft.page):
             controls=[txt_hexadecimal],
             alignment=ft.MainAxisAlignment.CENTER,
         ),
-        ft.Row(controls=[txt_decimal], alignment=ft.MainAxisAlignment.CENTER),
-        ft.Row(controls=[txt_octal], alignment=ft.MainAxisAlignment.CENTER),
-        ft.Row(controls=[txt_binary], alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row(
+            controls=[txt_decimal],
+            alignment=ft.MainAxisAlignment.CENTER
+        ),
+        ft.Row(
+            controls=[txt_octal],
+            alignment=ft.MainAxisAlignment.CENTER
+        ),
+        ft.Row(
+            controls=[txt_binary],
+            alignment=ft.MainAxisAlignment.CENTER
+        ),
         ft.Row(
             controls=[
                 ft.ElevatedButton(
