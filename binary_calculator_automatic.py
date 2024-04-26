@@ -1,6 +1,7 @@
 import flet
 from flet import (
     AppBar,
+    Checkbox,
     Column,
     Container,
     ElevatedButton,
@@ -11,7 +12,6 @@ from flet import (
     Text,
     TextField,
     UserControl,
-    Checkbox,
 )
 
 
@@ -99,56 +99,56 @@ class BinaryCalculator(UserControl):
                     Row(
                         controls=[
                             ElevatedButton(
-                                text=" H ",
+                                text="A/C",
                                 width=80,
-                                data="H",
+                                data="clear",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" G ",
-                                width=80,
-                                data="G",
-                                on_click=self.button_clicked,
-                            ),
-                            ElevatedButton(
-                                text=" F ",
+                                text="F",
                                 width=80,
                                 data="F",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text="A/C",
-                                width=80,
-                                data="A/C",
-                                on_click=self.button_clicked,
-                            ),
-                        ],
-                        alignment=MainAxisAlignment.CENTER,
-                    ),
-                    Row(
-                        controls=[
-                            ElevatedButton(
-                                text=" E ",
+                                text="E",
                                 width=80,
                                 data="E",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" D ",
+                                text="<-",
+                                width=80,
+                                data="remove",
+                                on_click=self.button_clicked,
+                            ),
+                        ],
+                        alignment=MainAxisAlignment.CENTER,
+                    ),
+                    Row(
+                        controls=[
+                            ElevatedButton(
+                                text="D",
                                 width=80,
                                 data="D",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" C ",
+                                text="C",
                                 width=80,
                                 data="C",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" B ",
+                                text="B",
                                 width=80,
                                 data="B",
+                                on_click=self.button_clicked,
+                            ),
+                            ElevatedButton(
+                                text="A",
+                                width=80,
+                                data="A",
                                 on_click=self.button_clicked,
                             ),
                         ],
@@ -157,27 +157,27 @@ class BinaryCalculator(UserControl):
                     Row(
                         controls=[
                             ElevatedButton(
-                                text=" A ",
-                                width=80,
-                                data="A",
-                                on_click=self.button_clicked,
-                            ),
-                            ElevatedButton(
-                                text=" 9 ",
+                                text="9",
                                 width=80,
                                 data="9",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" 8 ",
+                                text="8",
                                 width=80,
                                 data="8",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" 7 ",
+                                text="7",
                                 width=80,
                                 data="7",
+                                on_click=self.button_clicked,
+                            ),
+                            ElevatedButton(
+                                text="6",
+                                width=80,
+                                data="6",
                                 on_click=self.button_clicked,
                             ),
                         ],
@@ -186,27 +186,27 @@ class BinaryCalculator(UserControl):
                     Row(
                         controls=[
                             ElevatedButton(
-                                text=" 6 ",
-                                width=80,
-                                data="6",
-                                on_click=self.button_clicked,
-                            ),
-                            ElevatedButton(
-                                text=" 5 ",
+                                text="5",
                                 width=80,
                                 data="5",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" 4 ",
+                                text="4",
                                 width=80,
                                 data="4",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" 3 ",
+                                text="3",
                                 width=80,
                                 data="3",
+                                on_click=self.button_clicked,
+                            ),
+                            ElevatedButton(
+                                text="2",
+                                width=80,
+                                data="2",
                                 on_click=self.button_clicked,
                             ),
                         ],
@@ -215,26 +215,20 @@ class BinaryCalculator(UserControl):
                     Row(
                         controls=[
                             ElevatedButton(
-                                text=" 2 ",
-                                width=80,
-                                data="2",
-                                on_click=self.button_clicked,
-                            ),
-                            ElevatedButton(
-                                text=" 1 ",
+                                text="1",
                                 width=80,
                                 data="1",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" 0 ",
+                                text="0",
                                 width=80,
                                 data="0",
                                 on_click=self.button_clicked,
                             ),
                             ElevatedButton(
-                                text=" = ",
-                                width=80,
+                                text="=",
+                                width=170,
                                 data="=",
                                 on_click=self.button_clicked,
                             ),
@@ -252,57 +246,49 @@ class BinaryCalculator(UserControl):
         print(data)
 
         if data == "Select_hexadecimal":
-            if (
-                self.select_decimal.disabled is False
-            ):
+            if self.select_decimal.disabled is False:
                 self.select_binary.disabled = True
                 self.select_octal.disabled = True
                 self.select_decimal.disabled = True
-                self.txt_hexadecimal.disabled= False
+                self.txt_hexadecimal.disabled = False
             elif self.select_decimal.disabled is True:
                 self.select_binary.disabled = False
                 self.select_octal.disabled = False
                 self.select_decimal.disabled = False
-                self.txt_hexadecimal.disabled= True
+                self.txt_hexadecimal.disabled = True
         elif data == "Select_decimal":
-            if (
-                self.select_octal.disabled is False
-            ):
+            if self.select_octal.disabled is False:
                 self.select_binary.disabled = True
                 self.select_octal.disabled = True
                 self.select_hexadecimal.disabled = True
-                self.txt_decimal.disabled= False
+                self.txt_decimal.disabled = False
             elif self.select_octal.disabled is True:
                 self.select_binary.disabled = False
                 self.select_octal.disabled = False
                 self.select_hexadecimal.disabled = False
-                self.txt_decimal.disabled= True
+                self.txt_decimal.disabled = True
         elif data == "Select_octal":
-            if (
-                self.select_binary.disabled is False
-            ):
+            if self.select_binary.disabled is False:
                 self.select_binary.disabled = True
                 self.select_decimal.disabled = True
                 self.select_hexadecimal.disabled = True
-                self.txt_octal.disabled= False
+                self.txt_octal.disabled = False
             elif self.select_binary.disabled is True:
                 self.select_binary.disabled = False
                 self.select_decimal.disabled = False
                 self.select_hexadecimal.disabled = False
-                self.txt_octal.disabled= True
+                self.txt_octal.disabled = True
         elif data == "Select_binary":
-            if (
-                self.select_hexadecimal.disabled is False
-            ):
+            if self.select_hexadecimal.disabled is False:
                 self.select_octal.disabled = True
                 self.select_decimal.disabled = True
                 self.select_hexadecimal.disabled = True
-                self.txt_binary.disabled= False
+                self.txt_binary.disabled = False
             elif self.select_hexadecimal.disabled is True:
                 self.select_octal.disabled = False
                 self.select_decimal.disabled = False
                 self.select_hexadecimal.disabled = False
-                self.txt_binary.disabled= True
+                self.txt_binary.disabled = True
 
         self.update()
 
