@@ -16,18 +16,20 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: New features creating and passed tests
+          title: Aded values for textbox determined and passed for tests in homolog
           body: | # Write Pull Request feature specifications here
            Auto PR for Homolog.
-            Layout for window of software created.
-            Added four text boxes for writeteding users and added buttons.
+           Now the user can add value in the selected text box by clicking on the buttons.
+           User can also alter of text box.
           branch: ${{ github.ref }} #The branch where you commit.
           base: main
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
            New feature
-           Layout Window
+           Add value
+           Alter text box
+           Passed for tests
 
       - name: Check output
         run: |
