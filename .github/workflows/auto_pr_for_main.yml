@@ -16,20 +16,18 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: Feature of Calcular values is OK
+          title: Feature of activate buttons delete and clear all is OK
           body: | # Write Pull Request feature specifications here
            Auto PR for Homolog.
-           Now the user can calcular values in real time or click button of equals for in GUI.
-           Button of equals is on.
+           The user can now delete the last digit entered or clear all text boxes.
           branch: ${{ github.ref }} #The branch where you commit.
           base: main
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
            New feature
-           Calcular values
-           Passed for tests
-
+           Buttons is on
+           
       - name: Check output
         run: |
           echo "Pull Request Number: ${{ steps.cpr.outputs.pull-request-number }}"
