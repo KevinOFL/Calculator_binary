@@ -1,6 +1,5 @@
 import flet
 from flet import (
-    AppBar,
     Checkbox,
     Column,
     Container,
@@ -9,7 +8,6 @@ from flet import (
     MainAxisAlignment,
     Page,
     Row,
-    Text,
     TextField,
     UserControl,
 )
@@ -17,11 +15,6 @@ from flet import (
 
 class BinaryCalculator(UserControl):
     def build(self):
-
-        Page.appbar = AppBar(
-            title=Text("Binary Calculator"),
-        )
-
         # Variable of controls
         self.txt_hexadecimal = TextField(
             label="Hexadecimal",
@@ -110,7 +103,7 @@ class BinaryCalculator(UserControl):
                                 text="A/C",
                                 width=80,
                                 data="clear",
-                                on_click="",
+                                on_click=self.deleteOrClearAll,
                             ),
                             ElevatedButton(
                                 text="F",
@@ -127,8 +120,8 @@ class BinaryCalculator(UserControl):
                             ElevatedButton(
                                 text="<-",
                                 width=80,
-                                data="remove",
-                                on_click="",
+                                data="delete",
+                                on_click=self.deleteOrClearAll,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -278,12 +271,11 @@ class BinaryCalculator(UserControl):
             self.txt_octal.value = self.txt_octal.value + data
         elif self.data_of_selection_textbox == "Select_binary" and data in ("1", "0"):
             self.txt_binary.value = self.txt_binary.value + data
-        
+
         self.update()
 
     def disableControlls(self, e):
         self.data_of_selection_textbox = e.control.data
-        print(self.data_of_selection_textbox)
 
         if self.data_of_selection_textbox == "Select_hexadecimal":
             if self.select_decimal.disabled is False:
@@ -331,7 +323,7 @@ class BinaryCalculator(UserControl):
                 self.txt_binary.disabled = True
 
         self.update()
-        
+
     def calcularValue(self, e):
         convert_decimal = 0
         convert_hexadecimal = 0
@@ -347,9 +339,9 @@ class BinaryCalculator(UserControl):
                 convert_binary = bin(convert_decimal)[2:]
                 self.txt_binary.value = str(convert_binary)
             except ValueError:
-                self.txt_binary.value = 0
-                self.txt_octal.value = 0
-                self.txt_decimal.value = 0
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
                 self.txt_hexadecimal.value = ""
         elif self.data_of_selection_textbox == "Select_decimal":
             value_of_text_box = int(self.txt_decimal.value)
@@ -361,10 +353,10 @@ class BinaryCalculator(UserControl):
                 convert_binary = bin(value_of_text_box)[2:]
                 self.txt_binary.value = str(convert_binary)
             except ValueError:
-                self.txt_binary.value = 0
-                self.txt_octal.value = 0
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
                 self.txt_decimal.value = ""
-                self.txt_hexadecimal.value = 0
+                self.txt_hexadecimal.value = "0"
         elif self.data_of_selection_textbox == "Select_octal":
             value_of_text_box = self.txt_octal.value
             try:
@@ -375,10 +367,10 @@ class BinaryCalculator(UserControl):
                 convert_binary = bin(convert_decimal)[2:]
                 self.txt_binary.value = str(convert_binary)
             except ValueError:
-                self.txt_binary.value = 0
+                self.txt_binary.value = "0"
                 self.txt_octal.value = ""
-                self.txt_decimal.value = 0
-                self.txt_hexadecimal.value = 0
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
         elif self.data_of_selection_textbox == "Select_binary":
             value_of_text_box = self.txt_binary.value
             try:
@@ -390,25 +382,60 @@ class BinaryCalculator(UserControl):
                 self.txt_octal.value = str(convert_octal)
             except ValueError:
                 self.txt_binary.value = ""
-                self.txt_octal.value = 0
-                self.txt_decimal.value = 0
-                self.txt_hexadecimal.value = 0
-                
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
+
         self.update()
-        
-            
-        
+
+    def deleteOrClearAll(self, e):
+        data = e.control.data
+
+        if self.data_of_selection_textbox == "Select_hexadecimal":
+            if data == "clear":
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
+            elif data == "delete" and self.txt_hexadecimal != "0":
+                self.txt_hexadecimal.value = str(self.txt_decimal.value)[:-1]
+        elif self.data_of_selection_textbox == "Select_decimal":
+            if data == "clear":
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
+            elif data == "delete" and self.txt_decimal != "0":
+                self.txt_decimal.value = str(self.txt_decimal.value)[:-1]
+        elif self.data_of_selection_textbox == "Select_octal":
+            if data == "clear":
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
+            elif data == "delete" and self.txt_octal != "0":
+                self.txt_octal.value = str(self.txt_octal.value)[:-1]
+        elif self.data_of_selection_textbox == "Select_binary":
+            if data == "clear":
+                self.txt_binary.value = "0"
+                self.txt_octal.value = "0"
+                self.txt_decimal.value = "0"
+                self.txt_hexadecimal.value = "0"
+            elif data == "delete" and self.txt_binary != "0":
+                self.txt_binary.value = str(self.txt_binary.value)[:-1]
+
+        self.update()
 
 
 def main(page: Page):
     # Configuring the personalize of Page desktop
     page.title = "Binary Calculator"
-    page.window_height = 600
-    page.window_width = 600
-    page.window_max_height = 700
-    page.window_max_width = 700
-    page.window_min_height = 575
-    page.window_min_width = 450
+    page.window_height = 570
+    page.window_width = 460
+    page.window_max_height = 620
+    page.window_max_width = 500
+    page.window_min_height = 560
+    page.window_min_width = 440
     page.window_maximizable = False
 
     calc = BinaryCalculator()
