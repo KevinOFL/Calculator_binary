@@ -16,18 +16,19 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: "Feature: Window for Software"
+          title: "Feature: Aded values for textbox determined"
           body: | # Write Pull Request feature specifications here
             Auto PR for Homolog.
-            Layout for window of software created.
-            Added four text boxes for writeteding users and added buttons. 
+            Now the user can add value in the selected text box by clicking on the buttons.
+            User can also alter of text box.
           branch: ${{ github.ref }} #The branch where you commit.
           base: homolog
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
            New feature
-           Layout Window
+           Add value
+           Alter text box
 
       - name: Check output
         run: |
