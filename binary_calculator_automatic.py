@@ -27,7 +27,7 @@ class BinaryCalculator(UserControl):
             label="Hexadecimal",
             width=350,
             rtl=True,
-            input_filter=InputFilter(regex_string=r"[0-9/aA-hH]"),
+            input_filter=InputFilter(regex_string=r"[0-9/aA-fF]"),
             value="0",
             data="hexadecimal",
             disabled=True,
@@ -102,25 +102,25 @@ class BinaryCalculator(UserControl):
                                 text="A/C",
                                 width=80,
                                 data="clear",
-                                on_click=self.button_clicked,
+                                on_click="",
                             ),
                             ElevatedButton(
                                 text="F",
                                 width=80,
                                 data="F",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="E",
                                 width=80,
                                 data="E",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="<-",
                                 width=80,
                                 data="remove",
-                                on_click=self.button_clicked,
+                                on_click="",
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -131,25 +131,25 @@ class BinaryCalculator(UserControl):
                                 text="D",
                                 width=80,
                                 data="D",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="C",
                                 width=80,
                                 data="C",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="B",
                                 width=80,
                                 data="B",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="A",
                                 width=80,
                                 data="A",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -160,25 +160,25 @@ class BinaryCalculator(UserControl):
                                 text="9",
                                 width=80,
                                 data="9",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="8",
                                 width=80,
                                 data="8",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="7",
                                 width=80,
                                 data="7",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="6",
                                 width=80,
                                 data="6",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -189,25 +189,25 @@ class BinaryCalculator(UserControl):
                                 text="5",
                                 width=80,
                                 data="5",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="4",
                                 width=80,
                                 data="4",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="3",
                                 width=80,
                                 data="3",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="2",
                                 width=80,
                                 data="2",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -218,19 +218,19 @@ class BinaryCalculator(UserControl):
                                 text="1",
                                 width=80,
                                 data="1",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="0",
                                 width=80,
                                 data="0",
-                                on_click=self.button_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                             ElevatedButton(
                                 text="=",
                                 width=170,
                                 data="=",
-                                on_click=self.button_clicked,
+                                on_click="",
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -239,13 +239,45 @@ class BinaryCalculator(UserControl):
             )
         )
 
-    def button_clicked(self, e): ...
+    def button_of_value_clicked(self, e):
+        data = e.control.data
+
+        if self.data_of_selection_textbox == "Select_hexadecimal":
+            self.txt_hexadecimal.value = self.txt_hexadecimal.value + data
+        elif self.data_of_selection_textbox == "Select_decimal" and data in (
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0",
+        ):
+            self.txt_decimal.value = self.txt_decimal.value + data
+        elif self.data_of_selection_textbox == "Select_octal" and data in (
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "0",
+        ):
+            self.txt_octal.value = self.txt_octal.value + data
+        elif self.data_of_selection_textbox == "Select_binary" and data in ("1", "0"):
+            self.txt_binary.value = self.txt_binary.value + data
+
+        self.update()
 
     def disableControlls(self, e):
-        data = e.control.data
-        print(data)
+        self.data_of_selection_textbox = e.control.data
+        print(self.data_of_selection_textbox)
 
-        if data == "Select_hexadecimal":
+        if self.data_of_selection_textbox == "Select_hexadecimal":
             if self.select_decimal.disabled is False:
                 self.select_binary.disabled = True
                 self.select_octal.disabled = True
@@ -256,7 +288,7 @@ class BinaryCalculator(UserControl):
                 self.select_octal.disabled = False
                 self.select_decimal.disabled = False
                 self.txt_hexadecimal.disabled = True
-        elif data == "Select_decimal":
+        elif self.data_of_selection_textbox == "Select_decimal":
             if self.select_octal.disabled is False:
                 self.select_binary.disabled = True
                 self.select_octal.disabled = True
@@ -267,7 +299,7 @@ class BinaryCalculator(UserControl):
                 self.select_octal.disabled = False
                 self.select_hexadecimal.disabled = False
                 self.txt_decimal.disabled = True
-        elif data == "Select_octal":
+        elif self.data_of_selection_textbox == "Select_octal":
             if self.select_binary.disabled is False:
                 self.select_binary.disabled = True
                 self.select_decimal.disabled = True
@@ -278,7 +310,7 @@ class BinaryCalculator(UserControl):
                 self.select_decimal.disabled = False
                 self.select_hexadecimal.disabled = False
                 self.txt_octal.disabled = True
-        elif data == "Select_binary":
+        elif self.data_of_selection_textbox == "Select_binary":
             if self.select_hexadecimal.disabled is False:
                 self.select_octal.disabled = True
                 self.select_decimal.disabled = True
