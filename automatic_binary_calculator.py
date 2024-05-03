@@ -24,8 +24,8 @@ class BinaryCalculator(UserControl):
             value="0",
             data="hexadecimal",
             disabled=True,
-            on_change=self.calcularValue,
-            on_submit=self.calcularValue,
+            on_change=self.calculateValue,
+            on_submit=self.calculateValue,
         )  # noqa: F841
         self.txt_decimal = TextField(
             label="Decimal",
@@ -35,8 +35,8 @@ class BinaryCalculator(UserControl):
             value="0",
             data="decimal",
             disabled=True,
-            on_change=self.calcularValue,
-            on_submit=self.calcularValue,
+            on_change=self.calculateValue,
+            on_submit=self.calculateValue,
         )  # noqa: F841
         self.txt_octal = TextField(
             label="Octal",
@@ -46,8 +46,8 @@ class BinaryCalculator(UserControl):
             value="0",
             data="octal",
             disabled=True,
-            on_change=self.calcularValue,
-            on_submit=self.calcularValue,
+            on_change=self.calculateValue,
+            on_submit=self.calculateValue,
         )  # noqa: F841
         self.txt_binary = TextField(
             label="Binary",
@@ -57,8 +57,8 @@ class BinaryCalculator(UserControl):
             value="0",
             data="binary",
             disabled=True,
-            on_change=self.calcularValue,
-            on_submit=self.calcularValue,
+            on_change=self.calculateValue,
+            on_submit=self.calculateValue,
         )  # noqa: F841
 
         self.select_hexadecimal = Checkbox(
@@ -231,7 +231,7 @@ class BinaryCalculator(UserControl):
                                 text="=",
                                 width=170,
                                 data="=",
-                                on_click=self.calcularValue,
+                                on_click=self.calculateValue,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -324,7 +324,7 @@ class BinaryCalculator(UserControl):
 
         self.update()
 
-    def calcularValue(self, e):
+    def calculateValue(self, e):
         convert_decimal = 0
         convert_hexadecimal = 0
         convert_octal = 0
