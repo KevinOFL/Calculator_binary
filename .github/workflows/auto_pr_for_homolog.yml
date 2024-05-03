@@ -16,18 +16,18 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: "Feature: Buttons delete and clear all is on"
+          title: "Feature: New binary caculator"
           body: | # Write Pull Request feature specifications here
             Auto PR for Homolog.
-            The user can now delete the last digit entered or clear all text boxes.
+            Create a manual binary calculator variable, which has the functions of calculating values ​​created in a hard code way and took advantage of and corrected some errors in the automated version.
           branch: ${{ github.ref }} #The branch where you commit.
           base: homolog
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
            New feature
-           Button delete is on
-           Button clear all is on
+           New Calc
+           Bugfix
 
       - name: Check output
         run: |
