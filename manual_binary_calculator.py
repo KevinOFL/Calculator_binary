@@ -73,12 +73,6 @@ class BinaryCalculator(UserControl):
             data="Select_binary",
             on_change=self.disableControlls,
         )
-        self.btn_delete = ElevatedButton(
-            text="<-",
-            width=80,
-            data="delete",
-            on_click=self.deleteOrClearAll,
-        )
 
         return Container(
             content=Column(
@@ -119,7 +113,12 @@ class BinaryCalculator(UserControl):
                                 data="E",
                                 on_click=self.button_of_value_clicked,
                             ),
-                            self.btn_delete,
+                            ElevatedButton(
+                                text="<-",
+                                width=80,
+                                data="delete",
+                                on_click=self.deleteOrClearAll,
+                            ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
                     ),
@@ -205,7 +204,7 @@ class BinaryCalculator(UserControl):
                                 text="2",
                                 width=80,
                                 data="2",
-                                on_click=lambda:self.button_of_value_clicked,
+                                on_click=self.button_of_value_clicked,
                             ),
                         ],
                         alignment=MainAxisAlignment.CENTER,
@@ -304,14 +303,12 @@ class BinaryCalculator(UserControl):
                 self.select_binary.disabled = True
                 self.select_octal.disabled = True
                 self.select_decimal.disabled = True
-                self.btn_delete.disabled = True
                 self.txt_hexadecimal.disabled = False
             elif self.select_decimal.disabled is True:
                 self.state = 0
                 self.select_binary.disabled = False
                 self.select_octal.disabled = False
                 self.select_decimal.disabled = False
-                self.btn_delete.disabled = False
                 self.txt_hexadecimal.disabled = True
         elif self.data_of_selection_textbox == "Select_decimal":
             if self.select_octal.disabled is False:
@@ -565,38 +562,19 @@ class BinaryCalculator(UserControl):
 
     def deleteOrClearAll(self, e):
         data = e.control.data
-
-        if self.data_of_selection_textbox == "Select_hexadecimal":
-            if data == "clear":
-                self.txt_binary.value = "0"
-                self.txt_octal.value = "0"
-                self.txt_decimal.value = "0"
-                self.txt_hexadecimal.value = "0"
-        elif self.data_of_selection_textbox == "Select_decimal":
-            if data == "clear":
-                self.txt_binary.value = "0"
-                self.txt_octal.value = "0"
-                self.txt_decimal.value = "0"
-                self.txt_hexadecimal.value = "0"
-            elif data == "delete" and self.txt_decimal.value != "0":
-                self.txt_decimal.value = str(self.txt_decimal.value)[:-1]
-        elif self.data_of_selection_textbox == "Select_octal":
-            if data == "clear":
-                self.txt_binary.value = "0"
-                self.txt_octal.value = "0"
-                self.txt_decimal.value = "0"
-                self.txt_hexadecimal.value = "0"
-            elif data == "delete" and self.txt_octal.value != "0":
-                self.txt_octal.value = str(self.txt_octal.value)[:-1]
-        elif self.data_of_selection_textbox == "Select_binary":
-            if data == "clear":
-                self.txt_binary.value = "0"
-                self.txt_octal.value = "0"
-                self.txt_decimal.value = "0"
-                self.txt_hexadecimal.value = "0"
-            elif data == "delete" and self.txt_binary.value != "0":
-                self.txt_binary.value = str(self.txt_binary.value)[:-1]
-
+        if data == "delete" and self.txt_hexadecimal.value != "0":
+            self.txt_hexadecimal.value = str(self.txt_hexadecimal.value)[:-1]
+        elif data == "delete" and self.txt_decimal.value != "0":
+            self.txt_decimal.value = str(self.txt_decimal.value)[:-1]
+        elif data == "delete" and self.txt_octal.value != "0":
+            self.txt_octal.value = str(self.txt_octal.value)[:-1]
+        elif data == "delete" and self.txt_binary.value != "0":
+            self.txt_binary.value = str(self.txt_binary.value)[:-1]
+        else:
+            self.txt_binary.value = "0"
+            self.txt_octal.value = "0"
+            self.txt_decimal.value = "0"
+            self.txt_hexadecimal.value = "0"
         self.update()
 
 
