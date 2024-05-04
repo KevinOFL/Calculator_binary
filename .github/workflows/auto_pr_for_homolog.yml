@@ -16,18 +16,17 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: "Feature: New binary caculator"
+          title: "Feature: Fix olds errors"
           body: | # Write Pull Request feature specifications here
             Auto PR for Homolog.
-            Create a manual binary calculator variable, which has the functions of calculating values ​​created in a hard code way and took advantage of and corrected some errors in the automated version.
+            Fix bug in manual calculator where the button delete is not it worked correct in textbox hexadecimal.
+            I passed the corrections from the manual calculator to the automatic calculator.
           branch: ${{ github.ref }} #The branch where you commit.
           base: homolog
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
-           New feature
-           New Calc
-           Bugfix
+           Bug fixes
 
       - name: Check output
         run: |
