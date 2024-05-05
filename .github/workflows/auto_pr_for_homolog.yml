@@ -16,17 +16,15 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          title: "Feature: Fix olds errors"
+          title: "Feature: Docs Strings created"
           body: | # Write Pull Request feature specifications here
             Auto PR for Homolog.
-            Fix bug in manual calculator where the button delete is not it worked correct in textbox hexadecimal.
-            I passed the corrections from the manual calculator to the automatic calculator.
           branch: ${{ github.ref }} #The branch where you commit.
           base: homolog
           assignees: ${{ github.actor }}
           # Write the labels referring to the Pull Request
           labels: |
-           Bug fixes
+           Docs Strings
 
       - name: Check output
         run: |
