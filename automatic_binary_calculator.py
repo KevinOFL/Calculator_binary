@@ -14,7 +14,11 @@ from flet import (
 
 
 class BinaryCalculator(UserControl):
+    """A user control for a binary calculator."""
+
     def build(self):
+        """Builds the user interface for the binary calculator."""
+        
         # Variable of controls
         self.txt_hexadecimal = TextField(
             label="Hexadecimal",
@@ -241,6 +245,8 @@ class BinaryCalculator(UserControl):
         )
 
     def button_of_value_clicked(self, e):
+        """Handles button clicks for numeric and hexadecimal values."""
+        
         data = e.control.data
 
         if (
@@ -312,6 +318,8 @@ class BinaryCalculator(UserControl):
         self.update()
 
     def disableControlls(self, e):
+        """Disables controls based on the selection."""
+
         self.state = 0
         self.data_of_selection_textbox = e.control.data
 
@@ -371,6 +379,8 @@ class BinaryCalculator(UserControl):
         self.update()
 
     def calculateValue(self, e):
+        """Calculates the values based on the selected type of number."""
+        
         convert_decimal = 0
         convert_hexadecimal = 0
         convert_octal = 0
@@ -445,6 +455,8 @@ class BinaryCalculator(UserControl):
         self.update()
 
     def deleteOrClearAll(self, e):
+        """Deletes a single character or clears all values."""
+        
         data = e.control.data
         if data == "delete" and self.txt_hexadecimal.value != "0":
             self.txt_hexadecimal.value = str(self.txt_hexadecimal.value)[:-1]
@@ -459,10 +471,13 @@ class BinaryCalculator(UserControl):
             self.txt_octal.value = "0"
             self.txt_decimal.value = "0"
             self.txt_hexadecimal.value = "0"
+            
         self.update()
 
 
 def main(page: Page):
+    """Main function to configure the page and add the binary calculator."""
+    
     # Configuring the personalize of Page desktop
     page.title = "Binary Calculator"
     page.window_height = 570
